@@ -7,20 +7,20 @@ import TeacherForm from "../components/TeacherForm"
 import { AuthorizationError, BlitzPage, GetServerSideProps, Router, useQuery } from "blitz"
 import { getSessionContext } from "@blitzjs/server"
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSessionContext(context.req, context.res)
-  try {
-    session!.authorize(["user"])
-  } catch (err) {
-    if (err instanceof AuthorizationError) {
-      context.res.writeHead(302, { Location: "/" })
-      context.res.end()
-    }
-  }
-  return {
-    props: {},
-  }
-}
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const session = await getSessionContext(context.req, context.res)
+//   try {
+//     session!.authorize(["user"])
+//   } catch (err) {
+//     if (err instanceof AuthorizationError) {
+//       context.res.writeHead(302, { Location: "/" })
+//       context.res.end()
+//     }
+//   }
+//   return {
+//     props: {},
+//   }
+// }
 
 const SelectedForm = ({ selectedRole }) => {
   return (

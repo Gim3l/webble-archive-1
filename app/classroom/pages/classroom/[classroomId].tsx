@@ -4,15 +4,15 @@ import { GetServerSideProps } from "blitz"
 import React, { Suspense } from "react"
 import { getSessionContext } from "@blitzjs/server"
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSessionContext(context.req, context.res)
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const session = await getSessionContext(context.req, context.res)
 
-  session!.authorize(["teacher", "student"])
+//   session!.authorize(["teacher", "student"])
 
-  return {
-    props: {},
-  }
-}
+//   return {
+//     props: {},
+//   }
+// }
 
 const Classroom = () => {
   const classroom = useCurrentClassroom()

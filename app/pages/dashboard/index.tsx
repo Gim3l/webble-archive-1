@@ -7,23 +7,23 @@ import { Heading } from "bumbag/Heading/"
 import { Box } from "bumbag/Box"
 import { Text } from "bumbag/Text"
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSessionContext(context.req, context.res)
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const session = await getSessionContext(context.req, context.res)
 
-  // if (!(session.roles.includes("tutor") || session.roles.includes("student"))) {
-  try {
-    session!.authorize(["teacher", "student"])
-  } catch (err) {
-    if (err instanceof AuthorizationError) {
-      context.res.writeHead(302, { Location: "/onboarding" })
-      context.res.end()
-    }
-  }
+//   // if (!(session.roles.includes("tutor") || session.roles.includes("student"))) {
+//   try {
+//     session!.authorize(["teacher", "student"])
+//   } catch (err) {
+//     if (err instanceof AuthorizationError) {
+//       context.res.writeHead(302, { Location: "/onboarding" })
+//       context.res.end()
+//     }
+//   }
 
-  return {
-    props: {},
-  }
-}
+//   return {
+//     props: {},
+//   }
+// }
 
 const DashboardPage: BlitzPage = () => {
   return (

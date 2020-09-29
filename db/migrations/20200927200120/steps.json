@@ -1,0 +1,29 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Classroom",
+      "field": "TeacherProfileOnClassroom",
+      "type": "TeacherProfileOnClassroom",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Classroom",
+      "field": "TeacherProfileOnSubject"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TeacherProfile",
+      "field": "TeacherProfileOnClassroom",
+      "type": "TeacherProfileOnClassroom",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "TeacherProfile",
+      "field": "TeacherProfileOnSubject"
+    }
+  ]
+}

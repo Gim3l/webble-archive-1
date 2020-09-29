@@ -3,9 +3,11 @@ import { render } from "test/utils"
 
 import Home from "./index"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
+import { useTeacherProfile } from "app/hooks/useTeacherProfile"
 
 jest.mock("app/hooks/useCurrentUser")
 const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<typeof useCurrentUser>
+const mockUseTeacherProfile = useTeacherProfile as jest.MockedFunction<typeof useTeacherProfile>
 
 test.skip("renders blitz documentation link", () => {
   // This is an example of how to ensure a specific item is in the document
@@ -15,9 +17,17 @@ test.skip("renders blitz documentation link", () => {
   // This is an example on how to mock api hooks when testing
   mockUseCurrentUser.mockReturnValue({
     id: 1,
-    name: "User",
+    firstName: "John",
+    lastName: "Doe",
     email: "user@email.com",
     role: "user",
+  })
+
+  mockUseTeacherProfile.mockReturnValue({
+    id: 1,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    userId: 2,
   })
 
   const { getByText } = render(<Home />)

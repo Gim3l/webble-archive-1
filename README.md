@@ -63,7 +63,7 @@ You can read more about it on the [CLI Overview](https://blitzjs.com/docs/cli-ov
 Here is the structure of your app.
 
 ```
-simpleshop
+Webble
 ├── app
 │   |── auth
 │   │   ├── components

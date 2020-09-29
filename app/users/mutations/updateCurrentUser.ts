@@ -9,7 +9,7 @@ export default async function updateCurrentUser(
   { data }: UserUpdateInput,
   ctx: { session?: SessionContext } = {}
 ) {
-  if (!ctx.session?.userId) return null
+  ctx.session!.authorize()
 
   const user = await db.user.update({ data, where: { id: ctx.session!.userId } })
 

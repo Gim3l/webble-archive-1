@@ -73,7 +73,7 @@ const OnboardingPage: BlitzPage = () => {
 }
 
 OnboardingPage.getLayout = (page) => (
-  <DashboardLayout title="Onboarding" heading="Welcome!">
+  <DashboardLayout title="Onboarding" heading="Welcome!" noSideBar>
     {page}
   </DashboardLayout>
 )

@@ -37,7 +37,11 @@ export default passportAuth({
 
         const publicData = { userId: user.id, roles: [user.role], source: "google" }
 
-        return done(null, { publicData, redirectUrl: "http://localhost:3000" })
+        return done(null, {
+          publicData,
+          redirectUrl:
+            process.env.NODE_ENV === "production" ? "https://webble.co" : "http://localhost:3000",
+        })
       }
     ),
   ],

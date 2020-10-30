@@ -1,4 +1,5 @@
 import updateResourceFolder from "app/modules/resource/mutations/updateResourceFolder"
+import { useMutation } from "blitz"
 import { Box, Button, Card, Dialog, DropdownMenu, Icon, Modal } from "bumbag"
 import React, { Suspense, useState } from "react"
 import useCurrentClassroom from "../hooks/useCurrentClassroom"
@@ -6,11 +7,11 @@ import FolderForm from "./FolderForm"
 
 const EditFolderForm = ({ initialData, refetch }) => {
   const currentClassroom = useCurrentClassroom()
-
+  const [updateResourceFolderMutation] = useMutation(updateResourceFolder)
   const [colour, setColour] = useState(initialData.colour)
 
   const onEditFolder = async (values, refetch) => {
-    await updateResourceFolder({
+    await updateResourceFolderMutation({
       data: {
         name: values.folderName,
         colour: colour.hex,

@@ -1,7 +1,7 @@
 import React from "react"
 import { FieldStack, InputField } from "bumbag"
 import { Form } from "app/components/Form"
-import { useQuery, useRouter } from "blitz"
+import { useMutation, useQuery, useRouter } from "blitz"
 import createTeacherProfile from "app/modules/onboarding/mutations/createTeacherProfile"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
 import updateCurrentUser from "app/users/mutations/updateCurrentUser"
@@ -10,7 +10,8 @@ import { CreateTeacherProfileInput } from "../validations"
 
 const TeacherForm = () => {
   const currentUser = useCurrentUser()
-
+  const [createTeacherProfileMutation] = useMutation(createTeacherProfile)
+  const [updateCurrentUserMutation] = useMutation(updateCurrentUser)
   const router = useRouter()
 
   const makeId = (length: number) => {
@@ -25,7 +26,7 @@ const TeacherForm = () => {
 
   const onSubmit = async (values) => {
     try {
-      await createTeacherProfile({
+      await createTeacherProfileMutation({
         data: {
           user: { connect: { id: currentUser?.id } },
           TeacherProfileOnClassroom: {
@@ -33,7 +34,7 @@ const TeacherForm = () => {
           },
         },
       })
-      await updateCurrentUser({ data: { role: "teacher" } })
+      await updateCurrentUserMutation({ data: { role: "teacher" } })
     } catch (err) {}
     router.push("/dashboard")
   }

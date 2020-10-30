@@ -33,7 +33,7 @@ const AssignmentActions = () => {
             iconBefore="solid-trash-alt"
             color="danger"
             onClick={() => {
-              deleteAssignment({ id: assignmentId })
+              deleteAssignment({ id: assignmentId! })
             }}
           >
             Delete

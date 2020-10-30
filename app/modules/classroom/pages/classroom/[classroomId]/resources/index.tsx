@@ -20,7 +20,7 @@ const FileBrowserBox = dynamic(import("app/modules/classroom/components/FileBrow
 
 const AddFolderForm = () => {
   const currentClassroom = useCurrentClassroom()
-
+  const [createResourceFolderMutation] = useMutation(createResourceFolder)
   const [colour, setColour] = useState<any>()
 
   const [_, { refetch }] = useClassroomFolders({
@@ -28,7 +28,7 @@ const AddFolderForm = () => {
     include: { files: true },
   })
   const onAddFolder = async (values) => {
-    await createResourceFolder({
+    await createResourceFolderMutation({
       data: {
         name: values.folderName,
         colour: colour?.hex,

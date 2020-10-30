@@ -1,5 +1,5 @@
 import DashboardLayout from "app/layouts/DashboardLayout"
-import React, { Suspense } from "react"
+import React, { Suspense, useState } from "react"
 import { getSessionContext } from "@blitzjs/server"
 import { AuthorizationError, BlitzPage, GetServerSideProps, useQuery, useSession } from "blitz"
 import ClassroomList from "app/components/ClassroomList"
@@ -39,10 +39,17 @@ const ClassroomHeaderAction = () => {
   const toast = useToasts()
   const profile = useCurrentProfile()
   const [_, { refetch }] = useClassrooms()
+  const [classroomCode, setClassroomCode] = useState<string | null>(null)
+
+  const [classroom] = useQuery(
+    getClassroom,
+    { where: { code: classroomCode! } },
+    { enabled: classroomCode }
+  )
 
   const onJoinClassroom = async (values) => {
+    setClassroomCode(values.classroomCode)
     console.log("hello")
-    const classroom = await getClassroom({ where: { code: values.classroomCode } })
 
     console.log(classroom)
     if (!classroom) {

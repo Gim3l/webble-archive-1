@@ -26,7 +26,7 @@ function ClassMemberBox() {
     <ColouredBox title="Members" color="#48C77B" background="#E3F7EB">
       <>
         <Text use="strong">Teachers</Text>
-        {classroomMembers["TeacherProfileOnClassroom"].map((classroomMember) => (
+        {classroomMembers!["TeacherProfileOnClassroom"].map((classroomMember) => (
           <p key={"teacher" + classroomMember.teacherProfile.user.id}>
             {classroomMember.teacherProfile.user.firstName +
               " " +
@@ -35,7 +35,7 @@ function ClassMemberBox() {
         ))}
 
         <Text use="strong">Students</Text>
-        {classroomMembers["StudentProfileOnClassroom"].map((classroomMember) => (
+        {classroomMembers!["StudentProfileOnClassroom"].map((classroomMember) => (
           <p key={"student" + classroomMember.studentProfile.user.id}>
             {classroomMember.studentProfile.user.firstName +
               " " +

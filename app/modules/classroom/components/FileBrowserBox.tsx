@@ -1,4 +1,5 @@
 import deleteResourceFolder from "app/modules/resource/mutations/deleteResourceFolder"
+import { useMutation } from "blitz"
 import { Card, Text, Box, Heading, Button, Table } from "bumbag"
 import React from "react"
 import { useStore } from "utils/store"
@@ -15,8 +16,9 @@ type FolderProps = {
 }
 
 const Folder = (props: FolderProps) => {
+  const [deleteResourceFolderMutation] = useMutation(deleteResourceFolder)
   const onDelete = async () => {
-    await deleteResourceFolder({ where: { id: props.id } })
+    await deleteResourceFolderMutation({ where: { id: props.id } })
     props.refetch()
   }
 

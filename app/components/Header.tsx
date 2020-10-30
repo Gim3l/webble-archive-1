@@ -76,9 +76,9 @@ export default function Header() {
           <Link href="/">
             <TopNav.Item fontWeight="semibold">Webble</TopNav.Item>
           </Link>
-          <TopNav.Item href="#">Get started</TopNav.Item>
+          {/* <TopNav.Item href="#">Get started</TopNav.Item>
 
-          <TopNav.Item href="#">Components</TopNav.Item>
+          <TopNav.Item href="#">Components</TopNav.Item> */}
         </TopNav.Section>
         <TopNav.Section marginRight="major-2">
           <Suspense fallback="Loading...">

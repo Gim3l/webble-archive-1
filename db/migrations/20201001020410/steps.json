@@ -1,0 +1,475 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateModel",
+      "model": "Grade"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Grade",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Grade",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Grade",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Grade",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Grade",
+      "field": "amountReceived",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Grade",
+      "field": "total",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Grade",
+      "field": "GradeOnStudentProfile",
+      "type": "GradeOnStudentProfile",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Grade",
+      "field": "GradeOnAssignment",
+      "type": "GradeOnAssignment",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "GradeOnStudentProfile"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnStudentProfile",
+      "field": "grade",
+      "type": "Grade",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "grade"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "grade"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[gradeId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "grade"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnStudentProfile",
+      "field": "gradeId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnStudentProfile",
+      "field": "student",
+      "type": "StudentProfile",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "student"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "student"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[studentId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "student"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnStudentProfile",
+      "field": "studentId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "GradeOnStudentProfile"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Model",
+          "model": "GradeOnStudentProfile"
+        },
+        "directive": "id"
+      },
+      "argument": "",
+      "value": "[gradeId, studentId]"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Topic"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Topic",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Topic",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Topic",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Topic",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Topic",
+      "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Assignment"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Assignment",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Assignment",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Assignment",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Assignment",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Assignment",
+      "field": "name",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Assignment",
+      "field": "description",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Assignment",
+      "field": "GradeOnAssignment",
+      "type": "GradeOnAssignment",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "GradeOnAssignment"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnAssignment",
+      "field": "grade",
+      "type": "Grade",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnAssignment",
+          "field": "grade"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnAssignment",
+          "field": "grade"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[gradeId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnAssignment",
+          "field": "grade"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnAssignment",
+      "field": "gradeId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnAssignment",
+      "field": "assignment",
+      "type": "Assignment",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnAssignment",
+          "field": "assignment"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnAssignment",
+          "field": "assignment"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[assignmentId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnAssignment",
+          "field": "assignment"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnAssignment",
+      "field": "assignmentId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "GradeOnAssignment"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Model",
+          "model": "GradeOnAssignment"
+        },
+        "directive": "id"
+      },
+      "argument": "",
+      "value": "[gradeId, assignmentId]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "StudentProfile",
+      "field": "GradeOnStudentProfile",
+      "type": "GradeOnStudentProfile",
+      "arity": "List"
+    }
+  ]
+}

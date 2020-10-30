@@ -1,16 +1,18 @@
 import { AppProps, ErrorComponent, useRouter } from "blitz"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 import { queryCache } from "react-query"
-import { Provider as BumbagProvider, css } from "bumbag"
+import { Provider as BumbagProvider, css, ToastManager } from "bumbag"
 import {
   faHouseUser,
   faFolder,
   faBook,
   faCalendarWeek,
   faPercentage,
+  faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons"
 
 import LoginForm from "app/auth/components/LoginForm"
+import React from "react"
 
 export default function App({ Component, pageProps }: AppProps) {
   const theme = {
@@ -41,14 +43,14 @@ export default function App({ Component, pageProps }: AppProps) {
     Icon: {
       iconSets: [
         {
-          icons: [faHouseUser, faFolder, faBook, faCalendarWeek, faPercentage],
+          icons: [faHouseUser, faFolder, faBook, faCalendarWeek, faPercentage, faEllipsisH],
           prefix: "solid-",
           type: "font-awesome",
         },
       ],
     },
     Button: { defaultProps: { palette: "primary" } },
-    Heading: { styles: { base: { color: "primary" } } },
+    Heading: { styles: { base: { color: "primary", fontFamily: "'Poppins', sans-serif" } } },
     DropdownMenu: {
       Item: { styles: { base: { textAlign: "center" } } },
       Popover: {
@@ -81,6 +83,7 @@ export default function App({ Component, pageProps }: AppProps) {
       >
         {getLayout(<Component {...pageProps} />)}
       </ErrorBoundary>
+      <ToastManager />
     </BumbagProvider>
   )
 }

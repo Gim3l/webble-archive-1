@@ -1,5 +1,5 @@
-import React from "react"
-import { useRouter, BlitzPage, Router, GetServerSideProps } from "blitz"
+import React, { useEffect } from "react"
+import { useRouter, BlitzPage, Router, GetServerSideProps, useSession } from "blitz"
 import Layout from "app/layouts/Layout"
 import { SignupForm } from "app/auth/components/SignupForm"
 import { getSessionContext } from "@blitzjs/server"
@@ -20,6 +20,13 @@ import { getSessionContext } from "@blitzjs/server"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
+  const session = useSession()
+
+  useEffect(() => {
+    if (session.userId) {
+      router.push("/")
+    }
+  }, [])
 
   return (
     <div>

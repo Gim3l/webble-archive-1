@@ -1,23 +1,13 @@
-import getClassrooms from "app/classroom/queries/getClassrooms"
-import { useTeacherProfile } from "app/hooks/useTeacherProfile"
+import useClassrooms from "app/modules/classroom/hooks/useClassrooms"
+import getClassrooms from "app/modules/classroom/queries/getClassrooms"
+import { useCurrentProfile } from "app/hooks/useCurrentProfile"
 import { useQuery } from "blitz"
 import { Box } from "bumbag"
 import React from "react"
 import ClassroomCard from "./ClassroomCard"
 
 const ClassroomList = () => {
-  const teacherProfile = useTeacherProfile()
-
-  const [classrooms] = useQuery(getClassrooms, {
-    where: { TeacherProfileOnClassroom: { some: { teacherProfileId: teacherProfile?.id } } },
-    include: {
-      TeacherProfileOnClassroom: {
-        select: {
-          teacherProfile: { select: { user: { select: { firstName: true, lastName: true } } } },
-        },
-      },
-    },
-  })
+  const [classrooms] = useClassrooms()
 
   return (
     <>

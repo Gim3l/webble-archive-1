@@ -1,0 +1,30 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "StudentProfile",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Classroom",
+      "field": "Assignment",
+      "type": "Assignment",
+      "arity": "List"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Assignment",
+      "field": "classroom",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Assignment",
+      "field": "classroomId",
+      "arity": "Required"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ export default async function deleteProject(
   { where }: DeleteProjectInput,
   ctx: { session?: SessionContext } = {}
 ) {
-  ctx.session!.authorize()
+  ctx.session?.authorize()
 
   const project = await db.project.delete({ where })
 

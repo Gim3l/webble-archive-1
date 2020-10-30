@@ -8,7 +8,7 @@ export default async function createProject(
   { data }: CreateProjectInput,
   ctx: { session?: SessionContext } = {}
 ) {
-  ctx.session!.authorize()
+  ctx.session?.authorize()
 
   const project = await db.project.create({ data })
 

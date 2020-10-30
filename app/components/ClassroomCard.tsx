@@ -1,6 +1,7 @@
 import { Router } from "blitz"
 import { Card, Tag, Heading, Button, Box } from "bumbag"
 import React from "react"
+import ColoredCard from "./ColoredCard"
 
 type ClassroomCardProps = {
   classroom: any
@@ -8,14 +9,7 @@ type ClassroomCardProps = {
 
 function ClassroomCard(props: ClassroomCardProps) {
   return (
-    <Card
-      borderColor={props.classroom.color || "primary"}
-      borderWidth="2px"
-      variant="bordered"
-      cursor="pointer"
-      transition="all 0.3s cubic-bezier(.25,.8,.25,1)"
-      _hover={{ boxShadow: " 0 1px 3px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24)" }}
-    >
+    <ColoredCard>
       <Heading marginBottom="minor-4" use="h6">
         {props.classroom.name}
       </Heading>
@@ -29,7 +23,7 @@ function ClassroomCard(props: ClassroomCardProps) {
           View
         </Button>
       </Box>
-    </Card>
+    </ColoredCard>
   )
 }
 

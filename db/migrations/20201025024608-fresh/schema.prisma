@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url = "***"
+}
+
+model User {
+  id             Int             @id @default(autoincrement())
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  email          String          @unique
+  hashedPassword String?
+  role           String          @default("user")
+  firstName      String
+  lastName       String
+  sessions       Session[]
+  TeacherProfile TeacherProfile?
+  StudentProfile StudentProfile?
+}
+
+model Session {
+  id                 Int       @id @default(autoincrement())
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  expiresAt          DateTime?
+  handle             String    @unique
+  userId             Int?
+  hashedSessionToken String?
+  antiCSRFToken      String?
+  publicData         String?
+  privateData        String?
+  user               User?     @relation(fields: [userId], references: [id])
+}
+
+model Project {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+}
+
+model Exam {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Classroom {
+  id                        Int                         @id @default(autoincrement())
+  name                      String
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+  code                      String                      @unique
+  colour                    String                      @default("primary")
+  TeacherProfileOnClassroom TeacherProfileOnClassroom[]
+  StudentProfileOnClassroom StudentProfileOnClassroom[]
+  GradeOnStudentProfile     GradeOnStudentProfile[]
+  ResourceFolder            ResourceFolder[]
+  Assignment                Assignment[]
+}
+
+model TeacherProfile {
+  id                        Int                         @id @default(autoincrement())
+  userId                    Int                         @unique
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+  user                      User                        @relation(fields: [userId], references: [id])
+  TeacherProfileOnClassroom TeacherProfileOnClassroom[]
+}
+
+model StudentProfile {
+  id                        Int                         @id @default(autoincrement())
+  userId                    Int                         @unique
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+  user                      User                        @relation(fields: [userId], references: [id])
+  StudentProfileOnClassroom StudentProfileOnClassroom[]
+  GradeOnStudentProfile     GradeOnStudentProfile[]
+}
+
+model TeacherProfileOnClassroom {
+  teacherProfileId Int
+  classroomId      Int
+  classroom        Classroom      @relation(fields: [classroomId], references: [id])
+  teacherProfile   TeacherProfile @relation(fields: [teacherProfileId], references: [id])
+
+  @@id([teacherProfileId, classroomId])
+}
+
+model StudentProfileOnClassroom {
+  studentProfileId Int
+  classroomId      Int
+  classroom        Classroom      @relation(fields: [classroomId], references: [id])
+  studentProfile   StudentProfile @relation(fields: [studentProfileId], references: [id])
+
+  @@id([studentProfileId, classroomId])
+}
+
+model Grade {
+  id                    Int                     @id @default(autoincrement())
+  amountReceived        Int
+  total                 Int
+  GradeOnAssignment     GradeOnAssignment[]
+  GradeOnStudentProfile GradeOnStudentProfile[]
+}
+
+model GradeOnStudentProfile {
+  gradeId     Int
+  studentId   Int
+  classroomId Int
+  classroom   Classroom      @relation(fields: [classroomId], references: [id])
+  grade       Grade          @relation(fields: [gradeId], references: [id])
+  student     StudentProfile @relation(fields: [studentId], references: [id])
+
+  @@id([gradeId, studentId])
+}
+
+model Topic {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model Assignment {
+  id                Int                 @id @default(autoincrement())
+  name              String?
+  description       String
+  classroomId       Int
+  classroom         Classroom           @relation(fields: [classroomId], references: [id])
+  GradeOnAssignment GradeOnAssignment[]
+}
+
+model GradeOnAssignment {
+  gradeId      Int
+  assignmentId Int
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  grade        Grade      @relation(fields: [gradeId], references: [id])
+
+  @@id([gradeId, assignmentId])
+}
+
+model ResourceFolder {
+  id          Int       @id @default(autoincrement())
+  name        String
+  classroomId Int
+  colour      String    @default("primary")
+  classroom   Classroom @relation(fields: [classroomId], references: [id])
+  files       File[]
+}
+
+model File {
+  id               Int            @id @default(autoincrement())
+  name             String
+  path             String
+  size             Int
+  resourceFolderId Int
+  resourceFolder   ResourceFolder @relation(fields: [resourceFolderId], references: [id])
+}

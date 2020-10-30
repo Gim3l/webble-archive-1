@@ -14,7 +14,7 @@ export default async function getProjects(
   { where, orderBy, skip = 0, take }: GetProjectsInput,
   ctx: { session?: SessionContext } = {}
 ) {
-  ctx.session!.authorize()
+  ctx.session?.authorize()
 
   const projects = await db.project.findMany({
     where,

@@ -1,0 +1,90 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Classroom",
+      "field": "GradeOnStudentProfile",
+      "type": "GradeOnStudentProfile",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnStudentProfile",
+      "field": "classroom",
+      "type": "Classroom",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[classroomId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "GradeOnStudentProfile",
+      "field": "classroomId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "classroomId"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "GradeOnStudentProfile",
+          "field": "classroomId"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "1"
+    }
+  ]
+}

@@ -10,6 +10,8 @@ type FormProps<FormValues> = {
   submitText: string
   onSubmit: (values: FormValues) => Promise<void | OnSubmitResult>
   initialValues?: FormikProps<FormValues>["initialValues"]
+  noSubmitButton?: boolean
+  resetOnSubmit?: boolean
   schema?: z.ZodType<any, any>
 } & Omit<PropsWithoutRef<JSX.IntrinsicElements["form"]>, "onSubmit">
 
@@ -26,6 +28,7 @@ export function Form<FormValues extends Record<string, unknown>>({
   schema,
   initialValues,
   onSubmit,
+  resetOnSubmit,
   ...props
 }: FormProps<FormValues>) {
   const [formError, setFormError] = useState<string | null>(null)
@@ -40,7 +43,7 @@ export function Form<FormValues extends Record<string, unknown>>({
           return error.formErrors.fieldErrors
         }
       }}
-      onSubmit={async (values, { setErrors }) => {
+      onSubmit={async (values, { setErrors, resetForm }) => {
         const { FORM_ERROR, ...otherErrors } = (await onSubmit(values as FormValues)) || {}
 
         if (FORM_ERROR) {
@@ -49,6 +52,10 @@ export function Form<FormValues extends Record<string, unknown>>({
 
         if (Object.keys(otherErrors).length > 0) {
           setErrors(otherErrors as FormikErrors<FormValues>)
+        }
+
+        if (resetOnSubmit && !(FORM_ERROR || Object.keys(otherErrors).length > 0)) {
+          resetForm()
         }
       }}
     >
@@ -63,9 +70,11 @@ export function Form<FormValues extends Record<string, unknown>>({
             </div>
           )}
 
-          <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting || !isValid}>
-            {submitText}
-          </Button>
+          {!props.noSubmitButton && (
+            <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting || !isValid}>
+              {submitText}
+            </Button>
+          )}
 
           <style global jsx>{`
             .form > * + * {

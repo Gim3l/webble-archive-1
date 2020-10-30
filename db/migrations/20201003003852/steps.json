@@ -1,0 +1,84 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Classroom",
+      "field": "colour",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Classroom",
+          "field": "colour"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Classroom",
+          "field": "colour"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "\"primary\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "colour",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "colour"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "colour"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "\"primary\""
+    },
+    {
+      "tag": "DeleteField",
+      "model": "ResourceFolder",
+      "field": "folders"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "ResourceFolder",
+      "field": "ResourceFolder"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "ResourceFolder",
+      "field": "resourceFolderId"
+    }
+  ]
+}

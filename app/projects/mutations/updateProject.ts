@@ -10,7 +10,7 @@ export default async function updateProject(
   { where, data }: UpdateProjectInput,
   ctx: { session?: SessionContext } = {}
 ) {
-  ctx.session!.authorize()
+  ctx.session?.authorize()
 
   const project = await db.project.update({ where, data })
 

@@ -11,7 +11,7 @@ export default async function getProject(
   { where /* include */ }: GetProjectInput,
   ctx: { session?: SessionContext } = {}
 ) {
-  ctx.session!.authorize()
+  ctx.session?.authorize()
 
   const project = await db.project.findOne({ where })
 

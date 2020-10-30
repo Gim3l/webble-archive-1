@@ -1,0 +1,218 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateModel",
+      "model": "ResourceFolder"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "classroom",
+      "type": "Classroom",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[classroomId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "classroomId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "folders",
+      "type": "ResourceFolder",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "folders"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "folders"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"ResourceFolderToResourceFolder\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "ResourceFolder",
+      "type": "ResourceFolder",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "ResourceFolder"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "ResourceFolder"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"ResourceFolderToResourceFolder\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "ResourceFolder"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[resourceFolderId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "ResourceFolder",
+          "field": "ResourceFolder"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "ResourceFolder",
+      "field": "resourceFolderId",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Classroom",
+      "field": "ResourceFolder",
+      "type": "ResourceFolder",
+      "arity": "List"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Assignment",
+      "field": "classroom",
+      "type": "Classroom",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Assignment",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Assignment",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[classroomId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Assignment",
+          "field": "classroom"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Assignment",
+      "field": "classroomId",
+      "type": "Int",
+      "arity": "Optional"
+    }
+  ]
+}

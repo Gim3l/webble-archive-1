@@ -75,7 +75,11 @@ const InviteModal = () => {
 
 const TeacherStats = () => {
   const classroom = useCurrentClassroom()
-  const [aggregate] = useQuery(gradeAggregate, { classroomId: classroom?.id })
+  const [aggregate] = useQuery(
+    gradeAggregate,
+    { classroomId: classroom!.id },
+    { enabled: classroom }
+  )
 
   return (
     <>

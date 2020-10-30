@@ -1,4 +1,4 @@
-import { Link, BlitzPage, useMutation, useMutation } from "blitz"
+import { Link, BlitzPage, useMutation } from "blitz"
 import Layout from "app/layouts/Layout"
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/hooks/useCurrentUser"

@@ -77,15 +77,16 @@ const TeacherStats = () => {
   const classroom = useCurrentClassroom()
   const [aggregate] = useQuery(
     gradeAggregate,
-    { classroomId: classroom!.id },
+    // @ts-ignore
+    { classroomId: classroom?.id },
     { enabled: classroom }
   )
 
   return (
     <>
-      <StatCard title="Mean Grade" value={Math.floor(aggregate.avg * 100) + "%"}></StatCard>
-      <StatCard title="Median Grade" value={Math.floor(aggregate.med * 100) + "%"}></StatCard>
-      <StatCard title="Highest Grade" value={Math.floor(aggregate.max * 100) + "%"}></StatCard>
+      <StatCard title="Mean Grade" value={Math.floor(aggregate?.avg * 100) + "%"}></StatCard>
+      <StatCard title="Median Grade" value={Math.floor(aggregate?.med * 100) + "%"}></StatCard>
+      <StatCard title="Highest Grade" value={Math.floor(aggregate?.max * 100) + "%"}></StatCard>
       <StatCard title="Unsubmitted Work" value="20"></StatCard>
     </>
   )

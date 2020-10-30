@@ -1,7 +1,7 @@
 import { TopNav } from "bumbag/TopNav"
 import { Button } from "bumbag/Button"
 import React, { Suspense } from "react"
-import { Link, Router } from "blitz"
+import { Link, Router, useMutation } from "blitz"
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
 import { DropdownMenu } from "bumbag/DropdownMenu"
@@ -29,6 +29,7 @@ const UserDropDown = (props) => (
 
 const RightNav = () => {
   const currentUser = useCurrentUser()
+  const [logoutMutation] = useMutation(logout)
 
   if (currentUser) {
     return (
@@ -40,7 +41,7 @@ const RightNav = () => {
           <Button
             palette="primary"
             onClick={async () => {
-              await logout().then(() => Router.push("/"))
+              await logoutMutation().then(() => Router.push("/"))
             }}
           >
             Logout

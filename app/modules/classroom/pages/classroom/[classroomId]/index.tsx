@@ -116,7 +116,7 @@ function ClassroomDashboardPage() {
         <Columns.Column spread={8} spreadTablet={7}>
           <Suspense
             fallback={
-              <SkeletonLoader width="500" height="300">
+              <SkeletonLoader>
                 <rect x="101" y="48" rx="0" ry="0" width="9" height="0" />
                 <rect x="24" y="5" rx="0" ry="10" width="120" height="76" />
                 <rect x="198" y="4" rx="0" ry="110" width="120" height="76" />

@@ -1,6 +1,6 @@
 import StatCard from "app/modules/classroom/components/StatCard"
 import DashboardLayout from "app/layouts/DashboardLayout"
-import { Box, Button, Card, Divider, Flex, Heading, InputField, Modal } from "bumbag"
+import { Box, Button, Card, Columns, Divider, Flex, Heading, InputField, Modal } from "bumbag"
 import React, { Suspense, useState } from "react"
 import { dynamic, getQueryKey, invalidateQuery, useMutation, useQuery } from "blitz"
 import createResourceFolder from "app/modules/resource/mutations/createResourceFolder"
@@ -115,11 +115,14 @@ function ClassroomResourcesPage() {
       <Heading use="h4" marginBottom="minor-6">
         Summary
       </Heading>
-      <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gridColumnGap="24px">
-        <StatCard title="Resources" value="22"></StatCard>
-        <StatCard title="New resources this month" value="12"></StatCard>
-        <StatCard title="Views this month" value="102"></StatCard>
-      </Box>
+      <Columns>
+        <Columns.Column spread={6} spreadTablet={6}>
+          <StatCard title="Resources" value="22"></StatCard>
+        </Columns.Column>
+        <Columns.Column spread={6} spreadTablet={6}>
+          <StatCard title="New resources this month" value="12"></StatCard>
+        </Columns.Column>
+      </Columns>
 
       <Divider marginY="minor-10" backgroundColor="#D2D2D2" />
 

@@ -1,7 +1,7 @@
 import { useCurrentProfile } from "app/hooks/useCurrentProfile"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
 import { useQuery } from "blitz"
-import { Box } from "bumbag"
+import { Box, Columns } from "bumbag"
 import React from "react"
 import useCurrentClassroom from "../hooks/useCurrentClassroom"
 import getClassroomAssignments from "../queries/getClassroomAssignments"
@@ -20,11 +20,13 @@ function AssignmentList() {
         : null,
   })
   return (
-    <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap="28px">
+    <Columns>
       {assignments.map((assignment) => (
-        <AssignmentCard key={assignment.id} assignment={assignment}></AssignmentCard>
+        <Columns.Column key={assignment.id} spread={4} spreadTablet={6}>
+          <AssignmentCard assignment={assignment}></AssignmentCard>
+        </Columns.Column>
       ))}
-    </Box>
+    </Columns>
   )
 }
 

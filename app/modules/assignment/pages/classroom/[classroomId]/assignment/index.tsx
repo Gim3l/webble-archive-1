@@ -1,6 +1,6 @@
 import DashboardLayout from "app/layouts/DashboardLayout"
 import StatCard from "app/modules/classroom/components/StatCard"
-import { Box, Button, Divider, Flex, Heading } from "bumbag"
+import { Box, Button, Columns, Divider, Flex, Heading } from "bumbag"
 import React, { Suspense } from "react"
 import AssignmentList from "app/modules/classroom/components/AssignmentList"
 import { useParam, useRouter, useSession } from "blitz"
@@ -16,11 +16,14 @@ function AssignmentPage() {
       <Heading use="h4" marginBottom="minor-6">
         Summary
       </Heading>
-      <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gridColumnGap="24px">
-        <StatCard title="Ungraded Work" value="20"></StatCard>
-        <StatCard title="New resources this month" value="12"></StatCard>
-        <StatCard title="Views this month" value="102"></StatCard>
-      </Box>
+      <Columns>
+        <Columns.Column spread={6} spreadTablet={6} spreadMobile={6}>
+          <StatCard title="Ungraded Work" value="20"></StatCard>
+        </Columns.Column>
+        <Columns.Column spread={6} spreadTablet={6} spreadMobile={6}>
+          <StatCard title="Submitted Today" value="12"></StatCard>
+        </Columns.Column>
+      </Columns>
 
       <Divider marginY="minor-10" backgroundColor="#D2D2D2" />
 

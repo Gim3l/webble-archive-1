@@ -15,6 +15,7 @@ import {
   Button,
   Modal,
   InputField,
+  Columns,
 } from "bumbag"
 import StatCard from "app/modules/classroom/components/StatCard"
 import ClassEventBox from "app/modules/classroom/components/ClassEventBox"
@@ -84,12 +85,20 @@ const TeacherStats = () => {
   )
 
   return (
-    <>
-      <StatCard title="Mean Grade" value={Math.floor(aggregate?.avg * 100) + "%"}></StatCard>
-      <StatCard title="Median Grade" value={Math.floor(aggregate?.med * 100) + "%"}></StatCard>
-      <StatCard title="Highest Grade" value={Math.floor(aggregate?.max * 100) + "%"}></StatCard>
-      <StatCard title="Unsubmitted Work" value="20"></StatCard>
-    </>
+    <Columns>
+      <Columns.Column spread={6} spreadTablet={6}>
+        <StatCard title="Mean Grade" value={Math.floor(aggregate?.avg * 100) + "%"}></StatCard>
+      </Columns.Column>
+      <Columns.Column spread={6} spreadTablet={6}>
+        <StatCard title="Median Grade" value={Math.floor(aggregate?.med * 100) + "%"}></StatCard>
+      </Columns.Column>
+      <Columns.Column spread={6} spreadTablet={6}>
+        <StatCard title="Highest Grade" value={Math.floor(aggregate?.max * 100) + "%"}></StatCard>
+      </Columns.Column>
+      <Columns.Column spread={6} spreadTablet={6}>
+        <StatCard title="Unsubmitted Work" value="20"></StatCard>
+      </Columns.Column>
+    </Columns>
   )
 }
 
@@ -103,8 +112,8 @@ function ClassroomDashboardPage() {
           <InviteModal></InviteModal>
         </Suspense>
       </Box>
-      <Box display="grid" gridTemplateColumns="1.5fr 1fr" gridColumnGap="24px">
-        <Box display="grid" gridTemplateColumns="1fr 1fr" gridColumnGap="24px" gridRowGap="24px">
+      <Columns>
+        <Columns.Column spread={8} spreadTablet={7}>
           <Suspense
             fallback={
               <SkeletonLoader width="500" height="300">
@@ -118,9 +127,11 @@ function ClassroomDashboardPage() {
           >
             <TeacherStats></TeacherStats>
           </Suspense>
-        </Box>
-        <ClassEventBox></ClassEventBox>
-      </Box>
+        </Columns.Column>
+        <Columns.Column spread={4} spreadTablet={5}>
+          <ClassEventBox></ClassEventBox>
+        </Columns.Column>
+      </Columns>
 
       <Divider marginY="minor-10" backgroundColor="#D2D2D2" />
 
@@ -129,12 +140,16 @@ function ClassroomDashboardPage() {
         Recent
       </Heading>
 
-      <Box display="grid" gridTemplateColumns="1.5fr 1fr" gridColumnGap="24px">
-        <ClassRecentBox></ClassRecentBox>
-        <Suspense fallback="Loading...">
-          <ClassMemberBox></ClassMemberBox>
-        </Suspense>
-      </Box>
+      <Columns>
+        <Columns.Column spread={6} spreadTablet={6}>
+          <ClassRecentBox></ClassRecentBox>
+        </Columns.Column>
+        <Columns.Column spread={6} spreadTablet={6}>
+          <Suspense fallback="Loading...">
+            <ClassMemberBox></ClassMemberBox>
+          </Suspense>
+        </Columns.Column>
+      </Columns>
     </div>
   )
 }

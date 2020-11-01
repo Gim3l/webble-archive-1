@@ -3,7 +3,7 @@ import Layout from "app/layouts/Layout"
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
 import React, { Suspense } from "react"
-import { Box, Heading, Text, Button, Columns, Hide, Icon } from "bumbag"
+import { Box, Heading, Text, Button, Columns, Hide, Icon, useBreakpointValue } from "bumbag"
 import Image from "next/image"
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -66,6 +66,10 @@ const Feature = ({ text, ...otherProps }: { text: string; [otherProps: string]: 
 )
 
 const Home: BlitzPage = () => {
+  const btnSize = useBreakpointValue({
+    default: "large",
+    mobile: "default",
+  })
   return (
     <>
       <main>
@@ -196,7 +200,12 @@ const Home: BlitzPage = () => {
           </Columns>
           <Box display="flex" justifyContent="center">
             <Link href="/signup">
-              <Button display="block" margin="minor-20 auto" palette="secondary" size="large">
+              <Button
+                paddingY={{ mobile: "5px" }}
+                margin="minor-20 auto"
+                palette="secondary"
+                size={btnSize}
+              >
                 Get Started For Free!
               </Button>
             </Link>

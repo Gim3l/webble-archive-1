@@ -1,7 +1,7 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
 
-function SkeletonLoader({ width, height, children, ...otherProps }) {
+function SkeletonLoader({ width, height, children, ...otherProps }: any) {
   return (
     <ContentLoader speed={1} width={width} height={height} viewBox="0 0 340 184" {...otherProps}>
       {children ? (

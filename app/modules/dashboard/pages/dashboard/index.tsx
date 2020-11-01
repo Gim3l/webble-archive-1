@@ -35,6 +35,14 @@ import SkeletonLoader from "app/components/SkeletonLoader"
 //   }
 // }
 
+const ResponsiveButton: any = (props): any => {
+  const btnSize = useBreakpointValue({
+    default: "default",
+    mobile: "small",
+  })
+  return <Button size={btnSize} {...props}></Button>
+}
+
 const ClassroomHeaderAction = () => {
   const session = useSession()
   const toast = useToasts()
@@ -47,11 +55,6 @@ const ClassroomHeaderAction = () => {
     { where: { code: classroomCode! } },
     { enabled: classroomCode }
   )
-
-  const btnSize = useBreakpointValue({
-    default: "default",
-    mobile: "small",
-  })
 
   const onJoinClassroom = async (values) => {
     setClassroomCode(values.classroomCode)
@@ -87,7 +90,7 @@ const ClassroomHeaderAction = () => {
   return (
     <div>
       <Popover.State>
-        <Popover.Disclosure use={(props) => <Button size={btnSize} {...props}></Button>}>
+        <Popover.Disclosure use={ResponsiveButton}>
           {session.roles.includes("teacher") ? "Create Classroom" : "Join Classroom"}
         </Popover.Disclosure>
 

@@ -6,7 +6,7 @@ import ClassroomList from "app/components/ClassroomList"
 import { Heading } from "bumbag/Heading/"
 import { Box } from "bumbag/Box"
 import { Text } from "bumbag/Text"
-import { Button, Popover, InputField, useToasts } from "bumbag"
+import { Button, Popover, InputField, useToasts, useBreakpointValue } from "bumbag"
 import { useCurrentProfile } from "app/hooks/useCurrentProfile"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
 import { Form, FORM_ERROR } from "app/components/Form"
@@ -48,6 +48,11 @@ const ClassroomHeaderAction = () => {
     { enabled: classroomCode }
   )
 
+  const btnSize = useBreakpointValue({
+    default: "default",
+    mobile: "small",
+  })
+
   const onJoinClassroom = async (values) => {
     setClassroomCode(values.classroomCode)
 
@@ -82,7 +87,7 @@ const ClassroomHeaderAction = () => {
   return (
     <div>
       <Popover.State>
-        <Popover.Disclosure use={Button}>
+        <Popover.Disclosure use={(props) => <Button size={btnSize} {...props}></Button>}>
           {session.roles.includes("teacher") ? "Create Classroom" : "Join Classroom"}
         </Popover.Disclosure>
 

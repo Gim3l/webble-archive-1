@@ -5,31 +5,43 @@ import { Link, Router, useMutation } from "blitz"
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
 import { DropdownMenu } from "bumbag/DropdownMenu"
+import { useBreakpointValue } from "bumbag"
 
-const UserDropDown = (props) => (
-  <DropdownMenu
-    menu={
-      <React.Fragment>
-        <Link href="/dashboard">
-          <DropdownMenu.Item iconBefore="solid-pen">Dashboard</DropdownMenu.Item>
-        </Link>
-        <DropdownMenu.Item iconBefore="solid-share">Share</DropdownMenu.Item>
-        <DropdownMenu.Item iconBefore="solid-file-signature">Rename</DropdownMenu.Item>
-        <DropdownMenu.Item iconBefore="solid-trash-alt" color="danger">
-          Delete
-        </DropdownMenu.Item>
-      </React.Fragment>
-    }
-  >
-    <Button palette="default" iconAfter="chevron-down">
-      {props.currentUser.firstName} {props.currentUser.lastName}
-    </Button>
-  </DropdownMenu>
-)
+const UserDropDown = (props) => {
+  const btnSize = useBreakpointValue({
+    default: "default",
+    mobile: "small",
+  })
+
+  return (
+    <DropdownMenu
+      menu={
+        <React.Fragment>
+          <Link href="/dashboard">
+            <DropdownMenu.Item iconBefore="solid-pen">Dashboard</DropdownMenu.Item>
+          </Link>
+          <DropdownMenu.Item iconBefore="solid-share">Share</DropdownMenu.Item>
+          <DropdownMenu.Item iconBefore="solid-file-signature">Rename</DropdownMenu.Item>
+          <DropdownMenu.Item iconBefore="solid-trash-alt" color="danger">
+            Delete
+          </DropdownMenu.Item>
+        </React.Fragment>
+      }
+    >
+      <Button palette="default" iconAfter="chevron-down" size={btnSize}>
+        {props.currentUser.firstName} {props.currentUser.lastName}
+      </Button>
+    </DropdownMenu>
+  )
+}
 
 const RightNav = ({ invert = false }) => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
+  const btnSize = useBreakpointValue({
+    default: "default",
+    mobile: "small",
+  })
 
   if (currentUser) {
     return (
@@ -43,6 +55,7 @@ const RightNav = ({ invert = false }) => {
             onClick={async () => {
               await logoutMutation().then(() => Router.push("/"))
             }}
+            size={btnSize}
           >
             Logout
           </Button>
@@ -58,6 +71,7 @@ const RightNav = ({ invert = false }) => {
               variant={invert ? "outlined" : "ghost"}
               background={invert ? "#232946" : "auto"}
               palette={invert ? "secondary" : "primary"}
+              size={btnSize}
             >
               Sign up
             </Button>
@@ -65,7 +79,9 @@ const RightNav = ({ invert = false }) => {
         </Link>
         <Link href="/login">
           <TopNav.Item>
-            <Button palette="primary">Login</Button>
+            <Button palette="primary" size={btnSize}>
+              Login
+            </Button>
           </TopNav.Item>
         </Link>
       </>

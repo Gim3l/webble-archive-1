@@ -81,7 +81,7 @@ const Home: BlitzPage = () => {
               <Heading color="#fff" marginBottom="minor-8">
                 Create and Manage Your Online Classroom in Seconds
               </Heading>
-              <Text.Block fontSize="1.2em" marginBottom="minor-12" width="70%">
+              <Text.Block fontSize="1.2em" marginBottom="minor-12" width="80%">
                 Finally! A social LMS for individuals that's simple and customizable! Harvest the
                 power of a learning management system without the complexities of setting it up.
               </Text.Block>

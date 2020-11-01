@@ -66,7 +66,7 @@ const RightNav = ({ invert = false }) => {
     return (
       <>
         <Link href="/signup">
-          <TopNav.Item>
+          <TopNav.Item padding={{ mobile: "0" }}>
             <Button
               variant={invert ? "outlined" : "ghost"}
               background={invert ? "#232946" : "auto"}
@@ -78,7 +78,7 @@ const RightNav = ({ invert = false }) => {
           </TopNav.Item>
         </Link>
         <Link href="/login">
-          <TopNav.Item>
+          <TopNav.Item padding={{ mobile: "0" }}>
             <Button palette="primary" size={btnSize}>
               Login
             </Button>

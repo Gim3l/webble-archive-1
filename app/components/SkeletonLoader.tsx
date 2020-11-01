@@ -1,13 +1,7 @@
-import React, { ReactNode } from "react"
-import ContentLoader, { Code } from "react-content-loader"
+import React from "react"
+import ContentLoader from "react-content-loader"
 
-type SkeletonLoaderProps = {
-  width?: number
-  height?: number
-  children?: ReactNode
-}
-
-function SkeletonLoader({ width, height, children, ...otherProps }: SkeletonLoaderProps) {
+function SkeletonLoader({ width, height, children, ...otherProps }) {
   return (
     <ContentLoader speed={1} width={width} height={height} viewBox="0 0 340 184" {...otherProps}>
       {children ? (

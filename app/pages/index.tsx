@@ -2,8 +2,9 @@ import { Link, BlitzPage, useMutation } from "blitz"
 import Layout from "app/layouts/Layout"
 import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
-import { Suspense } from "react"
-
+import React, { Suspense } from "react"
+import { Box, Heading, Text, Button, Columns, Hide, Icon } from "bumbag"
+import Image from "next/image"
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
@@ -49,213 +50,167 @@ const UserInfo = () => {
   }
 }
 
+const Feature = ({ text, ...otherProps }: { text: string; [otherProps: string]: any }) => (
+  <Box display="flex" alignItems="center" {...otherProps}>
+    <Icon
+      width="35px"
+      height="35px"
+      marginRight="minor-2"
+      icon="solid-check-circle"
+      color="#F0F2FF"
+    ></Icon>
+    <Text fontSize="0.95em" width="80%">
+      {text}
+    </Text>
+  </Box>
+)
+
 const Home: BlitzPage = () => {
   return (
-    <div className="container">
+    <>
       <main>
-        <div className="logo">
-          <img src="/logo.png" alt="blitz.js" />
-        </div>
-        <p>
-          <strong>Congrats!</strong> Your app is ready, including user sign-up and log-in.
-        </p>
-        <div className="buttons" style={{ marginTop: "1rem", marginBottom: "5rem" }}>
-          <Suspense fallback="Loading...">
-            <UserInfo />
-          </Suspense>
-        </div>
-        <p>
-          <strong>
-            To add a new model to your app, <br />
-            run the following in your terminal:
-          </strong>
-        </p>
-        <pre>
-          <code>blitz generate all project name:string</code>
-        </pre>
-        <pre>
-          <code>blitz db migrate</code>
-        </pre>
-
-        <p>
-          Then go to{" "}
-          <Link href="/projects">
-            <a>/projects</a>
-          </Link>
-        </p>
-        <div className="buttons" style={{ marginTop: "5rem" }}>
-          <a
-            className="button"
-            href="https://github.com/blitz-js/blitz/blob/master/USER_GUIDE.md?utm_source=blitz-new&utm_medium=app-template&utm_campaign=blitz-new"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-          <a
-            className="button-outline"
-            href="https://github.com/blitz-js/blitz"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github Repo
-          </a>
-          <a
-            className="button-outline"
-            href="https://slack.blitzjs.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Slack Community
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://blitzjs.com?utm_source=blitz-new&utm_medium=app-template&utm_campaign=blitz-new"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Box
+          width="100%"
+          paddingY="minor-20"
+          paddingX="minor-10"
+          backgroundColor="#232946"
+          color="#fff"
         >
-          Powered by Blitz.js
-        </a>
-      </footer>
+          <Columns>
+            <Columns.Column spread={8}>
+              <Heading color="#fff" marginBottom="minor-8">
+                Create and Manage Your Online Classroom in Seconds
+              </Heading>
+              <Text.Block fontSize="1.2em" marginBottom="minor-12" width="70%">
+                Finally! A social LMS for individuals that's simple and customizable! Harvest the
+                power of a learning management system without the complexities of setting it up.
+              </Text.Block>
+              <Link href="/signup">
+                <Button palette="secondary">Create Your Classroom</Button>
+              </Link>
+            </Columns.Column>
+            <Hide below="tablet">
+              <Columns.Column>
+                <Image src="/teacher.svg" alt="Teacher" width={300} height={350} />
+              </Columns.Column>
+            </Hide>
+          </Columns>
+        </Box>
 
-      <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;700&display=swap");
+        <Box width="100%" paddingY="minor-20" paddingX="minor-10" background="#F0F2FF">
+          <Columns marginY="major-5">
+            <Columns.Column spread={6}>
+              <Heading use="h3">Simple Classroom Management</Heading>
+              <Text.Block marginY="minor-6">
+                Managing your classroom online shouldn't have to be difficult. Webble is easy to
+                navigate, customizable and powerful! You can make it even simpler with our layout
+                builder.
+              </Text.Block>
+            </Columns.Column>
+            <Columns.Column spread={6}></Columns.Column>
+          </Columns>
+          <Columns marginY="major-15">
+            <Columns.Column spread={6}></Columns.Column>
+            <Columns.Column spread={6}>
+              <Heading use="h3">Effortless Grading</Heading>
+              <Text.Block marginY="minor-6">
+                We made grading easier! Engage and grade your students digitally, without the
+                hassle. Track your student's performance all in one easy to understand interface.
+              </Text.Block>
+            </Columns.Column>
+          </Columns>
+          <Columns marginY="major-15">
+            <Columns.Column spread={6}>
+              <Heading use="h3">Worthwhile Parent-Teacher Engagements</Heading>
+              <Text.Block marginY="minor-6">
+                You create the data. We provide the analysis. And, you engage parents with
+                worthwhile information. Teachers, students and parents are no longer left in the
+                dark.
+              </Text.Block>
+            </Columns.Column>
+            <Columns.Column spread={6}></Columns.Column>
+          </Columns>
+        </Box>
 
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: "Libre Franklin", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-        }
+        <Box width="100%" paddingY="minor-20" paddingX="minor-10" background="#D4C785">
+          <Columns>
+            <Columns.Column spread={6}>
+              <Heading use="h3">Activity Tracking is now Child's Play</Heading>
+              <Text.Block marginY="minor-6" width="90%">
+                You create the data. We provide the analysis. And, you engage parents with
+                worthwhile information. Teachers, students and parents are no longer left in the
+                dark.
+              </Text.Block>
+              <Link href="/signup">
+                <Button size="medium">Start for Free!</Button>
+              </Link>
+            </Columns.Column>
+          </Columns>
+        </Box>
 
-        * {
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          box-sizing: border-box;
-        }
-        .container {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+        <Box width="100%" paddingY="minor-20" paddingX="minor-10" background="#004643" color="#fff">
+          <Heading use="h3" marginBottom="minor-6" color="#fff">
+            Features
+          </Heading>
+          <Columns>
+            <Columns.Column>
+              <Feature
+                text="Schedule and automatically send emails to students"
+                marginBottom="minor-4"
+              ></Feature>
+              <Feature text="Schedule and track events" marginBottom="minor-4"></Feature>
+              <Feature text="Generate and export reports" marginBottom="minor-4"></Feature>
+            </Columns.Column>
 
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+            <Columns.Column>
+              <Feature
+                text="Assign tasks and homework to your students"
+                marginBottom="minor-4"
+              ></Feature>
+              <Feature text="Grade your students" marginBottom="minor-4"></Feature>
+              <Feature
+                text="Distribute and organize classroom resources"
+                marginBottom="minor-4"
+              ></Feature>
+              <Feature text="Classroom activity log" marginBottom="minor-4"></Feature>
+              <Feature text="Communicate directly with students" marginBottom="minor-4"></Feature>
+              <Feature text="Badges and rewards" marginBottom="minor-4"></Feature>
+              <Feature text="Classroom statistics" marginBottom="minor-4"></Feature>
+              <Feature text="Plus many more awesome features!"></Feature>
+            </Columns.Column>
 
-        main p {
-          font-size: 1.2rem;
-        }
-
-        p {
-          text-align: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 60px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #45009d;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer a {
-          color: #f4f4f4;
-          text-decoration: none;
-        }
-
-        .logo {
-          margin-bottom: 2rem;
-        }
-
-        .logo img {
-          width: 300px;
-        }
-
-        .buttons {
-          display: grid;
-          grid-auto-flow: column;
-          grid-gap: 0.5rem;
-        }
-        .button {
-          font-size: 1rem;
-          background-color: #6700eb;
-          padding: 1rem 2rem;
-          color: #f4f4f4;
-          text-align: center;
-        }
-
-        .button.small {
-          padding: 0.5rem 1rem;
-        }
-
-        .button:hover {
-          background-color: #45009d;
-        }
-
-        .button-outline {
-          border: 2px solid #6700eb;
-          padding: 1rem 2rem;
-          color: #6700eb;
-          text-align: center;
-        }
-
-        .button-outline:hover {
-          border-color: #45009d;
-          color: #45009d;
-        }
-
-        pre {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-        }
-        code {
-          font-size: 0.9rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-            Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-    </div>
+            <Columns.Column>
+              <Feature
+                text="Customize the look and feel of your classroom"
+                marginBottom="minor-4"
+              ></Feature>
+              <Feature
+                text="View and analyze student grades with beautiful charts"
+                marginBottom="minor-4"
+              ></Feature>
+              <Feature
+                text="Gather anonymous feedback from students"
+                marginBottom="minor-4"
+              ></Feature>
+            </Columns.Column>
+          </Columns>
+          <Box display="flex" justifyContent="center">
+            <Link href="/signup">
+              <Button display="block" margin="minor-20 auto" palette="secondary" size="large">
+                Get Started For Free!
+              </Button>
+            </Link>
+          </Box>
+        </Box>
+      </main>
+    </>
   )
 }
 
-Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
+Home.getLayout = (page) => (
+  <Layout title="Home" invertHeader={true}>
+    {page}
+  </Layout>
+)
 
 export default Home

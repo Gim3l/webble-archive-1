@@ -9,6 +9,7 @@ import {
   faCalendarWeek,
   faPercentage,
   faEllipsisH,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons"
 
 import { faGoogle } from "@fortawesome/free-brands-svg-icons"
@@ -39,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
       ],
       default: "'Poppins', sans-serif",
     },
-    palette: { primary: "#261447", tertiary: "#F8F8F9" },
+    palette: { primary: "#232946", secondary: "#EBDD94", tertiary: "#F8F8F9" },
     breakpoints: { mobile: 520, tablet: 960 },
     Icon: {
       iconSets: [
@@ -52,6 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
             faPercentage,
             faEllipsisH,
             faGoogle,
+            faCheckCircle,
           ],
           prefix: "solid-",
           type: "font-awesome",

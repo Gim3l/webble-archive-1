@@ -27,7 +27,7 @@ const UserDropDown = (props) => (
   </DropdownMenu>
 )
 
-const RightNav = () => {
+const RightNav = ({ invert = false }) => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
 
@@ -54,7 +54,11 @@ const RightNav = () => {
       <>
         <Link href="/signup">
           <TopNav.Item>
-            <Button variant="ghost" palette="primary">
+            <Button
+              variant={invert ? "outlined" : "ghost"}
+              background={invert ? "#232946" : "auto"}
+              palette={invert ? "secondary" : "primary"}
+            >
               Sign up
             </Button>
           </TopNav.Item>
@@ -69,13 +73,23 @@ const RightNav = () => {
   }
 }
 
-export default function Header() {
+export default function Header({ invert = false }) {
   return (
     <div>
-      <TopNav paddingX="major-5">
+      <TopNav
+        background={invert ? "#232946" : "#fff"}
+        color={invert ? "#fff" : "primary"}
+        paddingX="major-5"
+      >
         <TopNav.Section>
           <Link href="/">
-            <TopNav.Item fontWeight="semibold">Webble</TopNav.Item>
+            <TopNav.Item
+              fontWeight="semibold"
+              fontSize="1.4em"
+              _hover={{ color: invert ? "#fff" : "primary" }}
+            >
+              Webble
+            </TopNav.Item>
           </Link>
           {/* <TopNav.Item href="#">Get started</TopNav.Item>
 
@@ -83,7 +97,7 @@ export default function Header() {
         </TopNav.Section>
         <TopNav.Section marginRight="major-2">
           <Suspense fallback="Loading...">
-            <RightNav></RightNav>
+            <RightNav invert={invert}></RightNav>
           </Suspense>
         </TopNav.Section>
       </TopNav>

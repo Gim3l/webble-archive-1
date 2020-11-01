@@ -1,6 +1,6 @@
 import formidable from "formidable"
-import { Client } from "minio"
 import * as fs from "fs"
+import { Client } from "minio"
 
 export const config = {
   api: {
@@ -8,20 +8,20 @@ export const config = {
   },
 }
 
+export const minioClient = new Client({
+  endPoint: "ewr1.vultrobjects.com",
+  useSSL: true,
+  accessKey: "ZF6ES7SY3085XF7OL6LI",
+  secretKey: "UecuGHHpXukV9xF54WllP9qkWGGKrA34noFUAKSY",
+})
+
 const route = async (req, res) => {
   // configure minio client
-  const minioClient = new Client({
-    endPoint: "localhost",
-    port: 9000,
-    useSSL: false,
-    accessKey: "AKIAIOSFODNN7EXAMPLE",
-    secretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
-  })
 
   const form = new formidable.IncomingForm()
   form.uploadDir = "./"
   form.keepExtensions = true
-  const { classroomId } = req.query
+  const { path } = req.query
 
   form.parse(req, (err, fields, files) => {
     // console.log(err, fields, files);
@@ -30,10 +30,10 @@ const route = async (req, res) => {
 
     minioClient
       .putObject(
-        "resources",
-        `${classroomId}/${file.name}`,
-        fs.readFileSync(file.path),
-        "/" + classroomId
+        path[0],
+        `${[...path.slice(1)].join("/")}/${file.name}`,
+        fs.readFileSync(file.path)
+        // "/" + path[1]
       )
       .then((res) => console.log(res))
       .catch((err) => console.log(err))

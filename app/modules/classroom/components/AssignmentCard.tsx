@@ -13,14 +13,29 @@ dayjs.extend(localizedFormat)
 export default function AssignmentCard({ assignment }: { assignment: Assignment }) {
   const router = useRouter()
   const classroom = useCurrentClassroom()
+  const getColor = (assignment) => {
+    if (assignment.AssignmentSubmission?.length > 0) {
+      // green if assignment is submitted
+      return "#6AF177"
+    } else if (dayjs(assignment.dueDate).isAfter(new Date())) {
+      // yellow if assignment is due and unsubmitted
+      return "yellow"
+    } else if (!dayjs(assignment.dueDate).isAfter(new Date())) {
+      // red if due date passed
+      return "#FF707A"
+    } else {
+      return "primary"
+    }
+  }
   return (
     <ColoredCard
-      color={dayjs(assignment.dueDate).isAfter(new Date()) ? "#6AF177" : "#FF707A"}
+      color={getColor(assignment)}
       onClick={() => router.push("/classroom/" + classroom?.id + "/assignment/" + assignment.id)}
     >
       <Heading use="h5">{assignment.name}</Heading>
       <Text.Block use="sub" color="grey">
         Topic Under Assignment
+        {/* {JSON.stringify(assignment)} */}
       </Text.Block>
       <Divider marginY="minor-3"></Divider>
       <Paragraph>{assignment.description}</Paragraph>

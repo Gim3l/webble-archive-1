@@ -15,6 +15,7 @@ import { CreateClassroomSchema, JoinClassroomSchema } from "app/modules/dashboar
 import { Field } from "formik"
 import addStudentToClassroom from "app/modules/classroom/mutations/addStudentToClassroom"
 import useClassrooms from "app/modules/classroom/hooks/useClassrooms"
+import SkeletonLoader from "app/components/SkeletonLoader"
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const session = await getSessionContext(context.req, context.res)
@@ -49,7 +50,6 @@ const ClassroomHeaderAction = () => {
 
   const onJoinClassroom = async (values) => {
     setClassroomCode(values.classroomCode)
-    console.log("hello")
 
     console.log(classroom)
     if (!classroom) {
@@ -143,7 +143,7 @@ const DashboardPage: BlitzPage = () => {
           </Suspense>
         </Box>
       </Box>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<SkeletonLoader></SkeletonLoader>}>
         <ClassroomList></ClassroomList>
       </Suspense>
     </div>

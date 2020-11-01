@@ -23,6 +23,7 @@ import ColouredBox from "app/modules/classroom/components/ColouredBox"
 import ClassMemberBox from "app/modules/classroom/components/ClassMemberBox"
 import { useQuery } from "blitz"
 import gradeAggregate from "app/modules/grades/queries/gradeAggregate"
+import SkeletonLoader from "app/components/SkeletonLoader"
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const session = await getSessionContext(context.req, context.res)
@@ -104,7 +105,17 @@ function ClassroomDashboardPage() {
       </Box>
       <Box display="grid" gridTemplateColumns="1.5fr 1fr" gridColumnGap="24px">
         <Box display="grid" gridTemplateColumns="1fr 1fr" gridColumnGap="24px" gridRowGap="24px">
-          <Suspense fallback="Loading...">
+          <Suspense
+            fallback={
+              <SkeletonLoader width="500" height="300">
+                <rect x="101" y="48" rx="0" ry="0" width="9" height="0" />
+                <rect x="24" y="5" rx="0" ry="10" width="120" height="76" />
+                <rect x="198" y="4" rx="0" ry="110" width="120" height="76" />
+                <rect x="24" y="96" rx="0" ry="10" width="120" height="76" />
+                <rect x="198" y="99" rx="0" ry="10" width="120" height="76" />
+              </SkeletonLoader>
+            }
+          >
             <TeacherStats></TeacherStats>
           </Suspense>
         </Box>

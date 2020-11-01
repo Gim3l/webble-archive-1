@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model User {
@@ -80,7 +80,6 @@ model StudentProfile {
   user                      User                        @relation(fields: [userId], references: [id])
   StudentProfileOnClassroom StudentProfileOnClassroom[]
   GradeOnStudentProfile     GradeOnStudentProfile[]
-  AssignmentSubmission      AssignmentSubmission[]
 }
 
 model TeacherProfileOnClassroom {
@@ -126,27 +125,22 @@ model Topic {
 }
 
 model Assignment {
-  id                   Int                    @id @default(autoincrement())
-  name                 String?
-  description          String
-  classroomId          Int
-  classroom            Classroom              @relation(fields: [classroomId], references: [id])
-  dueDate              DateTime               @default(now())
-  GradeOnAssignment    GradeOnAssignment[]
-  AssignmentSubmission AssignmentSubmission[]
+  id                Int                 @id @default(autoincrement())
+  name              String?
+  description       String
+  classroomId       Int
+  classroom         Classroom           @relation(fields: [classroomId], references: [id])
+  dueDate           DateTime            @default(now())
+  GradeOnAssignment GradeOnAssignment[]
 }
 
 model AssignmentSubmission {
-  id               Int            @id @default(autoincrement())
-  assignment       Assignment     @relation(fields: [assignmentId], references: [id])
-  student          StudentProfile @relation(fields: [studentProfileId], references: [id])
-  name             String
-  path             String
-  size             Int
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  studentProfileId Int
-  assignmentId     Int
+  id        Int      @id @default(autoincrement())
+  name      String
+  path      String
+  size      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model GradeOnAssignment {

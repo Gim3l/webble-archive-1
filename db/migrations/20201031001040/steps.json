@@ -1,0 +1,125 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "StudentProfile",
+      "field": "AssignmentSubmission",
+      "type": "AssignmentSubmission",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Assignment",
+      "field": "AssignmentSubmission",
+      "type": "AssignmentSubmission",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "AssignmentSubmission",
+      "field": "assignment",
+      "type": "Assignment",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "AssignmentSubmission",
+          "field": "assignment"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "AssignmentSubmission",
+          "field": "assignment"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[assignmentId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "AssignmentSubmission",
+          "field": "assignment"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "AssignmentSubmission",
+      "field": "student",
+      "type": "StudentProfile",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "AssignmentSubmission",
+          "field": "student"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "AssignmentSubmission",
+          "field": "student"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[studentProfileId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "AssignmentSubmission",
+          "field": "student"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "AssignmentSubmission",
+      "field": "studentProfileId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "AssignmentSubmission",
+      "field": "assignmentId",
+      "type": "Int",
+      "arity": "Required"
+    }
+  ]
+}

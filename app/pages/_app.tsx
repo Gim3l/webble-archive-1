@@ -11,6 +11,7 @@ import {
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons"
 
+import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 import LoginForm from "app/auth/components/LoginForm"
 import React from "react"
 
@@ -43,7 +44,15 @@ export default function App({ Component, pageProps }: AppProps) {
     Icon: {
       iconSets: [
         {
-          icons: [faHouseUser, faFolder, faBook, faCalendarWeek, faPercentage, faEllipsisH],
+          icons: [
+            faHouseUser,
+            faFolder,
+            faBook,
+            faCalendarWeek,
+            faPercentage,
+            faEllipsisH,
+            faGoogle,
+          ],
           prefix: "solid-",
           type: "font-awesome",
         },

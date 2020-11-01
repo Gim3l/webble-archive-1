@@ -32,9 +32,9 @@ const DashboardLayout = ({ title, heading, noSideBar, children }: DashboardLayou
         ) : (
           <PageWithSidebar
             sidebar={
-              <Suspense fallback="Loading...">
-                <SideBar></SideBar>
-              </Suspense>
+              // <Suspense fallback="Loading...">
+              <SideBar></SideBar>
+              // </Suspense>
             }
           >
             <PageContent>

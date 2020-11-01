@@ -14,7 +14,7 @@ import createResourceFile from "app/modules/resource/mutations/createResourceFil
 import getClassroomFolders from "app/modules/resource/queries/getClassroomFolders"
 import { queryCache } from "react-query"
 
-const FileBrowserBox = dynamic(import("app/modules/classroom/components/FileBrowserBox"), {
+const FileBrowserBox = dynamic(import("app/modules/resource/components/FileBrowserBox"), {
   ssr: false,
 })
 
@@ -84,7 +84,7 @@ const UploadFileModal = () => {
             onupdatefiles={setFiles}
             allowMultiple={true}
             maxFiles={3}
-            server={`/api/upload/${2}`}
+            server={`/api/upload/resources/${currentClassroom?.id}/`}
             name="files"
             onprocessfile={(error, file) => {
               mutate({

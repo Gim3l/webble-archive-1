@@ -1,11 +1,14 @@
 import deleteResourceFolder from "app/modules/resource/mutations/deleteResourceFolder"
-import { useMutation } from "blitz"
+import { Router, useMutation } from "blitz"
 import { Card, Text, Box, Heading, Button, Table } from "bumbag"
 import React from "react"
 import { useStore } from "utils/store"
-import useClassroomFolders from "../hooks/useClassroomFolders"
-import useCurrentClassroom from "../hooks/useCurrentClassroom"
-import FolderOptions from "./FolderOptions"
+import useClassroomFolders from "../../classroom/hooks/useClassroomFolders"
+import useCurrentClassroom from "../../classroom/hooks/useCurrentClassroom"
+import FolderOptions from "../../classroom/components/FolderOptions"
+import { humanFileSize } from "utils/files"
+import { Link } from "blitz"
+import { File } from "db"
 
 type FolderProps = {
   id: number
@@ -59,12 +62,14 @@ const FileTable = (props) => {
         </Table.Row>
       </Table.Head>
       <Table.Body>
-        {props.files.map((file) => (
+        {props.files.map((file: File) => (
           <Table.Row>
             <Table.Cell>{file.name}</Table.Cell>
-            <Table.Cell textAlign="right">{file.size}</Table.Cell>
+            <Table.Cell textAlign="right">{humanFileSize(file.size, true)}</Table.Cell>
             <Table.Cell textAlign="right">
-              <Button size="small">Download</Button>
+              <Link href={"/api/download/" + file.path}>
+                <Button size="small">Download</Button>
+              </Link>
             </Table.Cell>
           </Table.Row>
         ))}

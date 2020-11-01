@@ -3,11 +3,14 @@ import StatCard from "app/modules/classroom/components/StatCard"
 import { Box, Button, Divider, Flex, Heading } from "bumbag"
 import React, { Suspense } from "react"
 import AssignmentList from "app/modules/classroom/components/AssignmentList"
-import { useParam, useRouter } from "blitz"
+import { useParam, useRouter, useSession } from "blitz"
+import { useCurrentUser } from "app/hooks/useCurrentUser"
+import SkeletonLoader from "app/components/SkeletonLoader"
 
 function AssignmentPage() {
   const router = useRouter()
   const classroomId = useParam("classroomId", "number")
+  const session = useSession()
   return (
     <div>
       <Heading use="h4" marginBottom="minor-6">
@@ -23,11 +26,13 @@ function AssignmentPage() {
 
       <Flex justifyContent="space-between" alignItems="center" marginBottom="minor-6">
         <Heading use="h4">Browse</Heading>
-        <Button onClick={() => router.push(`/classroom/${classroomId}/assignment/new/`)}>
-          New
-        </Button>
+        {session.roles.includes("teacher") && (
+          <Button onClick={() => router.push(`/classroom/${classroomId}/assignment/new/`)}>
+            New
+          </Button>
+        )}
       </Flex>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<SkeletonLoader></SkeletonLoader>}>
         <AssignmentList></AssignmentList>
       </Suspense>
     </div>

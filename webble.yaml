@@ -1,0 +1,32 @@
+databases:
+  - cluster_name: db-postgresql-nyc1-89392
+    db_name: defaultdb
+    db_user: doadmin
+    engine: PG
+    name: db-postgresql-nyc1-89392
+    production: true
+    version: "12"
+name: webble
+region: nyc
+services:
+  - build_command: NODE_ENV=production yarn migrate && yarn build
+    environment_slug: node-js
+    envs:
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        value: "${db-postgresql-nyc1-89392.DATABASE_URL}"
+      - key: NODE_ENV
+        scope: RUN_AND_BUILD_TIME
+        value: production
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: Gim3l/Webble
+    health_check: { initial_delay_seconds: 300, timeout_seconds: 300, failure_threshold: 3 }
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xs
+    name: webble
+    routes:
+      - path: /
+    run_command: NODE_ENV=production yarn start --production -H 0.0.0.0 -p 8080

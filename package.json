@@ -5,6 +5,7 @@
     "start": "blitz start",
     "studio": "blitz db studio",
     "build": "blitz build",
+    "migrate": "blitz db migrate",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",

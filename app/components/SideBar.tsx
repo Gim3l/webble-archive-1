@@ -95,9 +95,9 @@ function SideBar() {
               <Icon aria-label="Resources" icon="solid-folder" marginRight="minor-3" /> Resources
             </SideNav.Item>
           </Link>
-          <Link href={"/classroom/" + classroomId + "/assignment"}>
-            <SideNav.Item navId="assignment">
-              <Icon aria-label="Assignment" icon="solid-book" marginRight="minor-3" /> Assignments
+          <Link href={"/classroom/" + classroomId + "/assignments"}>
+            <SideNav.Item navId="assignments">
+              <Icon aria-label="Assignments" icon="solid-book" marginRight="minor-3" /> Assignments
             </SideNav.Item>
           </Link>
           <SideNav.Item href="#" navId="schedule">

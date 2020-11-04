@@ -9,7 +9,7 @@ databases:
 name: webble
 region: nyc
 services:
-  - build_command: NODE_ENV=production yarn migrate && yarn build
+  - build_command: NODE_ENV=production yarn build
     environment_slug: node-js
     envs:
       - key: DATABASE_URL

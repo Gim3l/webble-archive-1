@@ -4,12 +4,12 @@
   "scripts": {
     "start": "blitz start",
     "studio": "blitz db studio",
-    "build": "blitz build",
+    "build": "blitz db migrate && blitz build",
     "migrate": "blitz db migrate",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
-    "postinstall": "prisma generate && blitz db migrate",
+    "postinstall": "prisma generate",
     "prisma:push": "prisma db push --preview-feature"
   },
   "browserslist": [

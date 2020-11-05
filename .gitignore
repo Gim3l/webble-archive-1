@@ -51,9 +51,3 @@ lib-cov
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
-
-# some test
-./.heroku/**/*",
-./.profile.d/**/*"
-./.cache/**/*"
-./.config/**/*

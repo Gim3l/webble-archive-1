@@ -1,6 +1,6 @@
 import deleteResourceFolder from "app/modules/resource/mutations/deleteResourceFolder"
 import { Router, useMutation } from "blitz"
-import { Card, Text, Box, Heading, Button, Table } from "bumbag"
+import { Card, Text, Box, Heading, Button, Table, Columns } from "bumbag"
 import React from "react"
 import { useStore } from "utils/store"
 import useClassroomFolders from "../../classroom/hooks/useClassroomFolders"
@@ -9,6 +9,7 @@ import FolderOptions from "../../classroom/components/FolderOptions"
 import { humanFileSize } from "utils/files"
 import { Link } from "blitz"
 import { File } from "db"
+import { Column } from "bumbag/ts/Columns/styles"
 
 type FolderProps = {
   id: number
@@ -91,24 +92,19 @@ const FileBrowserBox = () => {
   return (
     <Box display="grid" gridColumnGap="10px">
       {!currentFolder && (
-        <Box
-          variant="bordered"
-          display="grid"
-          gridTemplateColumns="repeat(auto-fit, 150px)"
-          gridColumnGap="20px"
-          gridRowGap="20px"
-          minWidth="500px"
-        >
+        <Columns>
           {folders.map((folder) => (
-            <Folder
-              id={folder.id}
-              name={folder.name}
-              colour={folder.colour}
-              refetch={refetch}
-              handleClick={() => setCurrentFolder(folder)}
-            ></Folder>
+            <Columns.Column spread={3} spreadMobile={6}>
+              <Folder
+                id={folder.id}
+                name={folder.name}
+                colour={folder.colour}
+                refetch={refetch}
+                handleClick={() => setCurrentFolder(folder)}
+              ></Folder>
+            </Columns.Column>
           ))}
-        </Box>
+        </Columns>
       )}
       {currentFolder && (
         <Card variant="bordered">

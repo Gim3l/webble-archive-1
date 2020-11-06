@@ -30,7 +30,7 @@ export default function AssignmentCard({ assignment }: { assignment: Assignment 
   return (
     <ColoredCard
       color={getColor(assignment)}
-      onClick={() => router.push("/classroom/" + classroom?.id + "/assignment/" + assignment.id)}
+      onClick={() => router.push("/classroom/" + classroom?.id + "/assignments/" + assignment.id)}
     >
       <Heading use="h5">{assignment.name}</Heading>
       <Text.Block use="sub" color="grey">

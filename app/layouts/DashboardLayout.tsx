@@ -6,6 +6,9 @@ import { Card } from "bumbag/Card"
 import Header from "app/components/Header"
 import SideBar from "app/components/SideBar"
 import { PageWithSidebar } from "bumbag/Page"
+import BottomBar from "app/components/BottomBar"
+import { Show } from "bumbag/Show"
+import { Hide } from "bumbag"
 
 type DashboardLayoutProps = {
   title?: string
@@ -21,7 +24,7 @@ const DashboardLayout = ({ title, heading, noSideBar, children }: DashboardLayou
         <title>{title || "Webble"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PageWithHeader header={<Header></Header>} sticky>
+      <PageWithHeader header={<Header invert={true}></Header>} sticky>
         {noSideBar ? (
           <PageContent>
             <Heading marginY="major-4" use="h2">
@@ -45,6 +48,7 @@ const DashboardLayout = ({ title, heading, noSideBar, children }: DashboardLayou
             </PageContent>
           </PageWithSidebar>
         )}
+        <BottomBar></BottomBar>
       </PageWithHeader>
     </>
   )

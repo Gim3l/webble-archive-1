@@ -74,7 +74,7 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       },
     },
-    // SideNav: { Item: { styles: { base: { fontWeight: "bolder" } } } },
+    SideNav: { Item: { styles: { active: { background: "#1B2036" } } } },
   }
 
   const getLayout = Component.getLayout || ((page) => page)

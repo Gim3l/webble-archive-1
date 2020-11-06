@@ -38,6 +38,7 @@ const SideBarHeader = () => {
         />
       </Flex>
       <Heading
+        color="secondary"
         use="h5"
         marginBottom="0"
         textAlign="center"
@@ -73,38 +74,114 @@ const SideBarHeader = () => {
 
 function SideBar() {
   const classroomId = useParam("classroomId", "number")
-
+  const router = useRouter()
   return (
-    <Box backgroundColor="primary" color="#fff" height="100vh" paddingY="major-5" overflow="hidden">
-      <Divider background="#D2D2D2" />
-      <Suspense fallback="Loading...">
-        <SideBarHeader></SideBarHeader>
-      </Suspense>
+    <Box
+      backgroundColor="primary"
+      color="secondary"
+      height="100vh"
+      paddingY="major-5"
+      overflow="hidden"
+    >
+      <Box border="2px solid #EBDD94" borderRight="none" borderLeft="none">
+        <Suspense fallback="Loading...">
+          <SideBarHeader></SideBarHeader>
+        </Suspense>
+      </Box>
 
-      <Divider background="#D2D2D2" />
       <SideNav defaultSelectedId="list" paddingY="major-5">
         <SideNav.Level>
           <Link href={"/classroom/" + classroomId}>
-            <SideNav.Item href="/dashboard" navId="dashboard">
-              <Icon aria-label="Dashboard" icon="solid-house-user" marginRight="minor-3" />{" "}
-              Dashboard
+            <SideNav.Item
+              width="85%"
+              borderRadius="4"
+              margin="5px auto"
+              _active={{ background: "#1B2036" }}
+              navId="dashboard"
+              color="secondary"
+              _hover={{ background: "#1B2036" }}
+            >
+              <Icon
+                color="secondary"
+                aria-label="Dashboard"
+                icon="solid-house-user"
+                marginRight="minor-3"
+              />{" "}
+              <Text color="secondary">Dashboard</Text>
             </SideNav.Item>
           </Link>
           <Link href={"/classroom/" + classroomId + "/resources"}>
-            <SideNav.Item href="#" navId="resources">
-              <Icon aria-label="Resources" icon="solid-folder" marginRight="minor-3" /> Resources
+            <SideNav.Item
+              width="85%"
+              borderRadius="4"
+              margin="5px auto"
+              _active={{ background: "#1B2036" }}
+              _hover={{ background: "#1B2036" }}
+              _focus={{ background: "#1B2036" }}
+              navId="resources"
+              color="secondary"
+            >
+              <Icon
+                color="secondary"
+                aria-label="Resources"
+                icon="solid-folder"
+                marginRight="minor-3"
+              />{" "}
+              <Text color="secondary">Resources</Text>
             </SideNav.Item>
           </Link>
           <Link href={"/classroom/" + classroomId + "/assignments"}>
-            <SideNav.Item navId="assignments">
-              <Icon aria-label="Assignments" icon="solid-book" marginRight="minor-3" /> Assignments
+            <SideNav.Item
+              width="85%"
+              borderRadius="4"
+              margin="5px auto"
+              _active={{ background: "#1B2036" }}
+              navId="assignments"
+              color="secondary"
+              _hover={{ background: "#1B2036" }}
+            >
+              <Icon
+                color="secondary"
+                aria-label="Assignments"
+                icon="solid-book"
+                marginRight="minor-3"
+              />{" "}
+              <Text color="secondary">Assignments</Text>
             </SideNav.Item>
           </Link>
-          <SideNav.Item href="#" navId="schedule">
-            <Icon aria-label="Schedule" icon="solid-calendar-week" marginRight="minor-3" /> Schedule
+          <SideNav.Item
+            width="85%"
+            borderRadius="4"
+            margin="5px auto"
+            _active={{ background: "#1B2036" }}
+            navId="schedule"
+            color="secondary"
+            _hover={{ background: "#1B2036" }}
+          >
+            <Icon
+              color="secondary"
+              aria-label="Schedule"
+              icon="solid-calendar-week"
+              marginRight="minor-3"
+            />
+            <Text color="secondary">Schedule</Text>
           </SideNav.Item>
-          <SideNav.Item href="#" navId="grades">
-            <Icon aria-label="Grades" icon="solid-percentage" marginRight="minor-3" /> Grades
+          <SideNav.Item
+            width="85%"
+            borderRadius="4"
+            margin="5px auto"
+            _active={{ background: "#1B2036" }}
+            navId="grades"
+            color="secondary"
+            _hover={{ background: "#1B2036" }}
+          >
+            <Icon
+              color="secondary"
+              aria-label="Grades"
+              icon="solid-percentage"
+              marginRight="minor-3"
+            />
+            <Text color="secondary">Grades</Text>
           </SideNav.Item>
         </SideNav.Level>
       </SideNav>

@@ -75,7 +75,7 @@ function SideBar() {
   const classroomId = useParam("classroomId", "number")
 
   return (
-    <Box backgroundColor="tertiary" height="100vh" paddingY="major-5" overflow="hidden">
+    <Box backgroundColor="primary" color="#fff" height="100vh" paddingY="major-5" overflow="hidden">
       <Divider background="#D2D2D2" />
       <Suspense fallback="Loading...">
         <SideBarHeader></SideBarHeader>

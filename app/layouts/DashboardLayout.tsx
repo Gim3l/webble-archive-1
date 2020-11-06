@@ -24,7 +24,7 @@ const DashboardLayout = ({ title, heading, noSideBar, children }: DashboardLayou
         <title>{title || "Webble"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PageWithHeader header={<Header></Header>} sticky>
+      <PageWithHeader header={<Header invert={true}></Header>} sticky>
         {noSideBar ? (
           <PageContent>
             <Heading marginY="major-4" use="h2">
